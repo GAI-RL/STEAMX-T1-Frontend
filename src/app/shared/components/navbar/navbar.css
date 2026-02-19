@@ -1,0 +1,413 @@
+/* ==================== NAVBAR - FINAL REFINED VERSION ==================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==================== LOGO - PROMINENT & ATTENTION-GRABBING ==================== */
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.logo:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.logo-gradient {
+  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  text-shadow: 0 2px 8px rgba(0, 104, 122, 0.15);
+  position: relative;
+}
+
+/* Subtle glow effect */
+.logo-gradient::after {
+  content: 'STEAMX';
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(8px);
+  opacity: 0.3;
+}
+
+.logo:hover .logo-gradient::after {
+  opacity: 0.5;
+}
+
+/* ==================== NAVIGATION - MINIMAL & CLEAN ==================== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: auto;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.nav-links a:hover {
+  color: #00687a;
+  background: rgba(0, 104, 122, 0.04);
+}
+
+/* Active state - Subtle and clean */
+.nav-links a.active {
+  color: #00687a;
+  font-weight: 600;
+  background: rgba(0, 104, 122, 0.08);
+}
+
+/* ==================== CTA BUTTON - THE STAR ==================== */
+.btn-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 104, 122, 0.18);
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top shine */
+.btn-nav-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    transparent 100%);
+  border-radius: 10px 10px 0 0;
+  pointer-events: none;
+}
+
+/* Animated shine */
+.btn-nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.25), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 104, 122, 0.25);
+}
+
+.btn-nav-cta:hover::before {
+  left: 100%;
+}
+
+.btn-nav-cta:active {
+  transform: translateY(0);
+}
+
+.btn-nav-cta span {
+  position: relative;
+  z-index: 1;
+}
+
+.arrow-icon {
+  transition: transform 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-nav-cta:hover .arrow-icon {
+  transform: translateX(2px);
+}
+
+/* ==================== MOBILE MENU BUTTON ==================== */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  position: relative;
+  z-index: 1001;
+}
+
+.mobile-menu-btn span {
+  width: 22px;
+  height: 2px;
+  background: #00687a;
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-btn.open span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ==================== MOBILE MENU ==================== */
+.mobile-menu {
+  position: fixed;
+  top: 70px;
+  right: -100%;
+  width: 300px;
+  max-width: 85vw;
+  height: calc(100vh - 70px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: -2px 0 16px rgba(0, 0, 0, 0.06);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-links {
+  list-style: none;
+  padding: 24px 20px;
+  margin: 0;
+}
+
+.mobile-links li {
+  margin-bottom: 4px;
+}
+
+.mobile-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.mobile-links a:hover {
+  background: rgba(0, 104, 122, 0.06);
+  color: #00687a;
+}
+
+.mobile-links a.active {
+  background: rgba(0, 104, 122, 0.1);
+  color: #00687a;
+  font-weight: 600;
+}
+
+/* Mobile CTA */
+.mobile-cta {
+  margin-top: 16px !important;
+  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(0, 104, 122, 0.2) !important;
+  gap: 8px;
+  position: relative;
+}
+
+.mobile-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    transparent 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+}
+
+.mobile-cta:hover {
+  background: linear-gradient(135deg, #005563 0%, #008a9e 100%) !important;
+  box-shadow: 0 3px 12px rgba(0, 104, 122, 0.25) !important;
+}
+
+.mobile-cta svg {
+  transition: transform 0.25s ease;
+}
+
+.mobile-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Desktop Only */
+.desktop-nav {
+  display: flex;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 968px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .navbar .container {
+    padding: 0 24px;
+  }
+
+  .logo {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar .container {
+    height: 64px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .mobile-menu {
+    top: 64px;
+    height: calc(100vh - 64px);
+  }
+
+  .mobile-overlay {
+    top: 64px;
+    height: calc(100vh - 64px);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .container {
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 1.375rem;
+  }
+
+  .mobile-links {
+    padding: 20px 16px;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent scroll when menu open */
+body.menu-open {
+  overflow: hidden;
+}
