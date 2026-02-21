@@ -172,6 +172,19 @@
   text-underline-offset: 2px;
 }
 
+/* Error Alert — On-brand version */
+.alert-error {
+  background: rgba(180, 35, 24, 0.05);
+  border: 1px solid rgba(180, 35, 24, 0.15);
+  color: #7a1c16;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  animation: fadeInUp 0.25s ease-out;
+}
 /* ═══════════════════════════════════════════════════════════════
    SUCCESS STATE
 ═══════════════════════════════════════════════════════════════ */
