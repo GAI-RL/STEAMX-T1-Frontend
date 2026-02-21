@@ -87,25 +87,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         }, 2000);
       },
       error: (err) => {
-      this.loading = false;
-
-      if (err.status === 400 && err.error?.detail) {
-        const detail = err.error.detail.toLowerCase();
-
-        if (detail.includes('email already registered')) {
-          this.error = 'An account with this email already exists. Please sign in instead.';
-        } else {
-          this.error = 'Invalid information provided. Please review your details.';
-        }
-
-      } else if (err.status === 0) {
-        this.error = 'Network error. Please check your internet connection.';
-      } else {
-        this.error = 'Unable to create account at the moment. Please try again later.';
+        this.loading = false;
+        this.error = err.error?.detail || 'Registration failed. Please try again.';
+        console.error('Registration error:', err);
       }
-
-      console.error('Registration error:', err);
-    }
     });
   }
 }
