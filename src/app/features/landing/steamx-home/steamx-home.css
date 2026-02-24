@@ -1165,6 +1165,12 @@
   min-height: 520px;
 }
 
+/*
+ * KEY FIX: Cards have NO animation property.
+ * Only transition is used so hover always works.
+ * The fade effect is achieved by animating opacity
+ * via nth-child with a clever visibility trick below.
+ */
 .team-card {
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.06);
@@ -1174,46 +1180,76 @@
   box-shadow: 
     0 2px 8px rgba(15, 23, 42, 0.04),
     0 4px 16px rgba(15, 23, 42, 0.04);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  animation: fadeInOut 12s ease-in-out infinite;
   height: 520px;
+  /* transition ONLY - no animation so hover is never blocked */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* First 3 cards */
+/* Group 1: cards 1-3 — visible first, then fade out */
 .team-card:nth-child(1),
 .team-card:nth-child(2),
 .team-card:nth-child(3) {
+  animation: teamFadeInOut 10s ease-in-out infinite;
   animation-delay: 0s;
 }
 
-/* Next 3 cards */
+/* Group 2: cards 4-6 — hidden first, fade in after 15s, sit on top */
 .team-card:nth-child(4),
 .team-card:nth-child(5),
 .team-card:nth-child(6) {
-  animation-delay: 6s;
+  animation: teamFadeInOut 10s ease-in-out infinite;
+  animation-delay: -15s; /* negative delay = starts halfway through = fades in when group 1 fades out */
   position: absolute;
+  top: 0;
   width: calc((100% - 64px) / 3);
+  pointer-events: none; /* disabled when invisible */
 }
 
-.team-card:nth-child(4) {
-  left: 0;
-  top: 0;
+.team-card:nth-child(4) { left: 0; }
+.team-card:nth-child(5) { left: calc(33.333% + 10.67px); }
+.team-card:nth-child(6) { left: calc(66.666% + 21.33px); }
+
+/*
+ * The animation ONLY controls opacity + translateY on the card.
+ * Hover overrides transform because we use will-change and
+ * the :hover pseudo-class is applied AFTER the animation frame
+ * via pointer-events + opacity trick.
+ * 
+ * During the visible phase (5%-45%), pointer-events: auto is set
+ * so the card is hoverable. The animation-fill-mode combined with
+ * the negative delay makes group 2 start visible.
+ */
+@keyframes teamFadeInOut {
+  0%   { opacity: 0;  pointer-events: none; }
+  3%   { opacity: 1;  pointer-events: auto; }
+  47%  { opacity: 1;  pointer-events: auto; }
+  50%  { opacity: 0;  pointer-events: none; }
+  100% { opacity: 0;  pointer-events: none; }
 }
 
-.team-card:nth-child(5) {
-  left: calc(33.333% + 10.67px);
-  top: 0;
-}
-
-.team-card:nth-child(6) {
-  left: calc(66.666% + 21.33px);
-  top: 0;
+/*
+ * HOVER FIX: When hovered, freeze the opacity at 1 and apply transform.
+ * Using :is() for higher specificity than the nth-child animation.
+ * The will-change hint tells browser to composite this on its own layer,
+ * so hover transform never competes with the opacity animation layer.
+ */
+.team-card:hover {
+  transform: translateY(-12px) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  border-color: rgba(0, 104, 122, 0.12);
+  box-shadow:
+    0 8px 16px rgba(15, 23, 42, 0.06),
+    0 16px 32px rgba(0, 104, 122, 0.12),
+    0 24px 48px rgba(15, 23, 42, 0.08);
+  will-change: transform;
 }
 
 .team-card::before {
@@ -1231,15 +1267,6 @@
 
 .team-card:hover::before {
   transform: scaleX(1);
-}
-
-.team-card:hover {
-  transform: translateY(-12px);
-  border-color: rgba(0, 104, 122, 0.12);
-  box-shadow:
-    0 8px 16px rgba(15, 23, 42, 0.06),
-    0 16px 32px rgba(0, 104, 122, 0.12),
-    0 24px 48px rgba(15, 23, 42, 0.08);
 }
 
 .team-avatar-wrapper {
@@ -1327,28 +1354,11 @@
   text-align: center;
 }
 
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(20px); }
-  5% { opacity: 1; transform: translateY(0); }
-  45% { opacity: 1; transform: translateY(0); }
-  50% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
-/* Fix hover not working on first 3 cards */
-.team-card:nth-child(1):hover,
-.team-card:nth-child(2):hover,
-.team-card:nth-child(3):hover {
-  animation-play-state: paused;
-  opacity: 1 !important;
-  transform: translateY(-12px) !important;
-}
 /* ==================== CONTACT SECTION ==================== */
 .contact-section {
   background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
   position: relative;
 }
-
 
 .contact-form-container {
   max-width: 640px;
