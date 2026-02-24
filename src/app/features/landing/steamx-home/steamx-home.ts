@@ -129,6 +129,14 @@ export class SteamxHomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // Team
   team = [
     {
+      avatar: 'assets/images/Niaz.png',
+      name: 'Niaz Ahmad',
+      role: 'Project Director',
+      bio: 'Drives product direction by aligning market research, client requirements, and business objectives into a data-driven strategic roadmap.',
+      linkedin: '#',
+      twitter: '#'
+    },
+    {
       avatar: 'assets/images/Tooba.png',
       name: 'Tooba Pervaiz',
       role: 'Technical Project Manager',
@@ -141,6 +149,14 @@ export class SteamxHomeComponent implements OnInit, OnDestroy, AfterViewInit {
       name: 'Ayesha Azam',
       role: 'Technical Lead',
       bio: 'Architected the platform’s core systems and guided engineering implementation to ensure scalability and reliability.',
+      twitter: '#'
+    },
+    {
+      avatar: 'assets/images/Tayyaba.png',
+      name: 'Tayyaba Hayyat',
+      role: 'Marketing Manager',
+      bio: ' Develops and executes marketing strategies to drive brand awareness, customer acquisition, and revenue growth.',
+      linkedin: '#',
       twitter: '#'
     },
     {

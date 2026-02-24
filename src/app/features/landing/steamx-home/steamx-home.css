@@ -1159,15 +1159,17 @@
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  position: relative;
+  min-height: 520px;
 }
 
 .team-card {
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.06);
   border-radius: 20px;
-  padding: 36px 28px 18px;
+  padding: 36px 28px 28px;
   text-align: center;
   box-shadow: 
     0 2px 8px rgba(15, 23, 42, 0.04),
@@ -1178,6 +1180,40 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeInOut 12s ease-in-out infinite;
+  height: 520px;
+}
+
+/* First 3 cards */
+.team-card:nth-child(1),
+.team-card:nth-child(2),
+.team-card:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Next 3 cards */
+.team-card:nth-child(4),
+.team-card:nth-child(5),
+.team-card:nth-child(6) {
+  animation-delay: 6s;
+  position: absolute;
+  width: calc((100% - 64px) / 3);
+}
+
+.team-card:nth-child(4) {
+  left: 0;
+  top: 0;
+}
+
+.team-card:nth-child(5) {
+  left: calc(33.333% + 10.67px);
+  top: 0;
+}
+
+.team-card:nth-child(6) {
+  left: calc(66.666% + 21.33px);
+  top: 0;
 }
 
 .team-card::before {
@@ -1291,6 +1327,22 @@
   text-align: center;
 }
 
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  5% { opacity: 1; transform: translateY(0); }
+  45% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Fix hover not working on first 3 cards */
+.team-card:nth-child(1):hover,
+.team-card:nth-child(2):hover,
+.team-card:nth-child(3):hover {
+  animation-play-state: paused;
+  opacity: 1 !important;
+  transform: translateY(-12px) !important;
+}
 /* ==================== CONTACT SECTION ==================== */
 .contact-section {
   background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
