@@ -11,4 +11,8 @@ import { RouterModule } from '@angular/router';
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
+  
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
