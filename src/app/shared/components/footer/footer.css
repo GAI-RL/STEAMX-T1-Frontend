@@ -31,24 +31,17 @@
 .footer-logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
   text-decoration: none;
-  color: #00687a;
 }
 
-.footer-logo-icon {
-  width: 36px;
-  height: 36px;
-  background: #00687a;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  flex-shrink: 0;
+.footer-logo-img {
+  height: 170px;
+  width: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  margin-top: -60px;
+  margin-bottom: -50px;
+  margin-left: -24px;
 }
 
 .footer-tagline {
@@ -90,20 +83,29 @@
 /* Social icons — inline row */
 .footer-social {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   margin-top: 2px;
 }
 
 .social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 104, 122, 0.15);
+  background: rgba(0, 104, 122, 0.04);
   color: #64748b;
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .social-link:hover {
   color: #00687a;
+  background: rgba(0, 104, 122, 0.1);
+  border-color: rgba(0, 104, 122, 0.3);
+  transform: translateY(-2px);
 }
 
 /* Contact */
@@ -136,13 +138,48 @@
 
 .footer-bottom {
   padding: 16px 0 10px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .footer-copy {
   font-size: 1rem;
   color: #00687a;
   margin: 0;
+  text-align: center;
+}
+
+/* ==================== SCROLL TO TOP ==================== */
+
+.scroll-top-btn {
+  position: absolute;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 104, 122, 0.2);
+  background: rgba(0, 104, 122, 0.06);
+  color: #00687a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s ease;
+  outline: none;
+}
+
+.scroll-top-btn:hover {
+  background: #00687a;
+  color: white;
+  border-color: #00687a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 104, 122, 0.28);
+}
+
+.scroll-top-btn:active {
+  transform: translateY(-1px);
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -152,11 +189,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 36px;
   }
-
   .footer-brand {
     grid-column: 1 / -1;
   }
-
   .footer-tagline {
     max-width: 100%;
   }
@@ -166,15 +201,25 @@
   .footer-inner {
     padding: 40px 24px 0;
   }
-
   .footer-main {
     grid-template-columns: 1fr 1fr;
     gap: 28px;
+  }
+  .footer-logo-img {
+    height: 66px;
   }
 }
 
 @media (max-width: 400px) {
   .footer-main {
     grid-template-columns: 1fr;
+  }
+  .footer-logo-img {
+    height: 60px;
+  }
+  .scroll-top-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
   }
 }

@@ -2,6 +2,11 @@
   background: var(--bg-color);
   overflow-x: hidden;
 }
+.headline-x {
+  color: inherit;
+  font-weight: 900;
+  font-style: italic;
+}
 /* ==================== SCROLL OFFSET FOR ALL ANCHOR SECTIONS ==================== */
 .hero-section,
 .features-section,

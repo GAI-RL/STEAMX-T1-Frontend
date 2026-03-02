@@ -27,49 +27,50 @@
 }
 
 /* ==================== LOGO - PROMINENT & ATTENTION-GRABBING ==================== */
+/* ==================== LOGO ==================== */
 .logo {
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
-  letter-spacing: -0.02em;
   text-decoration: none;
   transition: all 0.25s ease;
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
+  flex-direction: column;      /* stacks logo + tagline vertically */
+  align-items: flex-start;
+  background: transparent;
 }
 
-.logo:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.1);
+.logo-svg {
+  height: 170px;
+  width: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  transition: filter 0.25s ease;
 }
 
-.logo-gradient {
-  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  text-shadow: 0 2px 8px rgba(0, 104, 122, 0.15);
-  position: relative;
+.logo-tagline {
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: #00687a;
+  opacity: 0.75;
+  line-height: 1;
+  margin-top: -4px;    /* pulls it tight under the logo */
+  white-space: nowrap;
 }
 
-/* Subtle glow effect */
-.logo-gradient::after {
-  content: 'STEAMX';
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: blur(8px);
-  opacity: 0.3;
+/* Makes the X stand out */
+.tagline-x {
+  font-weight: 700;
+  color: #00687a;
+  opacity: 1;
 }
 
-.logo:hover .logo-gradient::after {
-  opacity: 0.5;
+.logo:hover .logo-tagline {
+  opacity: 1;
+}
+/* Hover glow */
+.logo:hover .logo-svg {
+  mix-blend-mode: normal;         /* ← restore on hover so glow shows */
+  filter: drop-shadow(0 0 8px rgba(0, 104, 122, 0.5))
+          drop-shadow(0 0 16px rgba(0, 188, 212, 0.3));
 }
 
 /* ==================== NAVIGATION - MINIMAL & CLEAN ==================== */
@@ -369,7 +370,7 @@
 
 @media (max-width: 640px) {
   .navbar .container {
-    height: 64px;
+    height: 90px;
     padding: 0 20px;
   }
 

@@ -14,7 +14,7 @@
 
 /* Logo */
 .brand-logo {
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 /* Headline block */
@@ -102,6 +102,53 @@
 /* ═══════════════════════════════════════════════════════════════
    FORM — Register additions
 ═══════════════════════════════════════════════════════════════ */
+
+/* Error alert animation */
+.error-alert {
+  background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(248,113,113,0.12));
+  border: 1.5px solid rgba(239,68,68,0.25);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: #dc2626;
+  font-weight: 500;
+  animation: slideInShake 0.5s ease-out;
+}
+
+.error-alert svg {
+  flex-shrink: 0;
+  color: #ef4444;
+}
+
+@keyframes slideInShake {
+  0% { 
+    opacity: 0; 
+    transform: translateY(-10px);
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+  60% { 
+    transform: translateX(-5px);
+  }
+  70% { 
+    transform: translateX(5px);
+  }
+  80% { 
+    transform: translateX(-3px);
+  }
+  90% { 
+    transform: translateX(3px);
+  }
+  100% { 
+    transform: translateX(0);
+  }
+}
 
 /* Side-by-side name + email */
 .form-row {
@@ -218,15 +265,48 @@
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 980px) {
-  .branding-headline h1 { font-size: 2.6rem; }
-  .branding-headline p  { max-width: 100%; }
-  .brand-logo           { margin-bottom: 32px; }
-  .branding-headline    { margin-bottom: 36px; }
-  .proof-row            { justify-content: center; }
+
+/* ── Large Desktop: 1280px+ ──────────────────────────────────── */
+@media (min-width: 1280px) {
+  .branding-headline h1 { font-size: 4rem; }
 }
 
-@media (max-width: 560px) {
-  .form-row { grid-template-columns: 1fr; }
-  .branding-headline h1 { font-size: 2.1rem; }
+/* ── Desktop / Laptop: 981px – 1279px ───────────────────────── */
+@media (min-width: 981px) and (max-width: 1279px) {
+  .branding-headline h1 { font-size: 3.2rem; }
+  .branding-headline    { margin-bottom: 40px; }
+}
+
+/* ── Tablet Landscape: up to 980px ──────────────────────────── */
+@media (max-width: 980px) {
+  .branding-headline h1 { font-size: 2.6rem; }
+  .branding-headline p  { max-width: 100%; text-align: center; }
+  .brand-logo           { margin-bottom: 20px; text-align: center; }
+  .branding-headline    { margin-bottom: 36px; text-align: center; }
+  .proof-row            { justify-content: center; }
+  .auth-branding        { align-items: center; }
+}
+
+/* ── Tablet Portrait: up to 768px ───────────────────────────── */
+@media (max-width: 768px) {
+  .branding-headline h1 { font-size: 2.2rem; }
+  .branding-headline    { margin-bottom: 28px; }
+  .brand-logo           { margin-bottom: 16px; }
+}
+
+/* ── Mobile Large: up to 600px ──────────────────────────────── */
+@media (max-width: 600px) {
+  .form-row             { grid-template-columns: 1fr; }
+  .branding-headline h1 { font-size: 1.9rem; }
+  .branding-headline p  { font-size: 0.9rem; }
+  .brand-logo           { margin-bottom: 12px; }
+  .branding-headline    { margin-bottom: 20px; }
+}
+
+/* ── Mobile Small: up to 420px ──────────────────────────────── */
+@media (max-width: 420px) {
+  .branding-headline h1 { font-size: 1.65rem; letter-spacing: -0.02em; }
+  .branding-headline p  { font-size: 0.85rem; }
+  .proof-caption        { font-size: 0.78rem; }
+  .stars                { font-size: 0.72rem; }
 }

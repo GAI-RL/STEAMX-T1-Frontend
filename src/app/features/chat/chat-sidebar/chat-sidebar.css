@@ -32,11 +32,13 @@
 
 .sidebar-logo {
   text-decoration: none;
-  border-radius: 6px;
-  padding: 3px 6px;
+  border-radius: 3px;
+  padding: 2px 2px;
   transition: background 0.15s;
 }
-.sidebar-logo:hover { background: #f5f5f5; }
+/* =====================================================
+.sidebar-logo:hover { background: #ecf7fa; }
+   ===================================================== */
 
 .logo-text {
   font-size: 1.2rem;
