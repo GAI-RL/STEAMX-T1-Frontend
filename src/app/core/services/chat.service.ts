@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ChatService {
 
-  private apiUrl = `${environment.apiUrl}/chat/sessions`;
+  private apiUrl = `${environment.apiUrl}/chat`;
 
 
   constructor(
