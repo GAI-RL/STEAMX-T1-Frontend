@@ -27,13 +27,10 @@
         </span>
       </div>
 
-      <!-- TEXT -->
       <div class="message-text" [innerHTML]="formatContent(message.content)"></div>
 
-      <!-- ✅ IMAGE BLOCK (THIS WAS MISSING) -->
       @if (message.figures?.length) {
         <div class="message-figures">
-
           @for (fig of message.figures; track $index) {
             <div class="figure-card">
 
@@ -53,7 +50,6 @@
 
             </div>
           }
-
         </div>
       }
 
