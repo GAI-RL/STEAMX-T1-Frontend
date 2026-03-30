@@ -1,3 +1,11 @@
+// Figure/image data for assistant responses
+export interface ChatFigure {
+  image_path?: string;
+  caption?: string;
+  image_base64?: string;
+  imageUrl?: string;
+}
+
 // A chat conversation
 export interface ChatSession {
   id: string;
@@ -15,6 +23,7 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: string;
+  figures?: ChatFigure[];   // ✅ added (for images)
 }
 
 // When user sends a message
@@ -28,6 +37,7 @@ export interface SendMessageResponse {
   question: string;
   answer: string;
   session_id: string;
+  figures?: ChatFigure[];   // ✅ added (for images)
 }
 
 // Alias for compatibility (so we don't have to change everything)
