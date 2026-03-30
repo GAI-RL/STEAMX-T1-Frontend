@@ -27,10 +27,12 @@
         </span>
       </div>
 
+      <!-- First dialogue box: text -->
       <div class="message-text" [innerHTML]="formatContent(message.content)"></div>
 
+      <!-- Second dialogue box: figure -->
       @if (message.figures?.length) {
-        <div class="message-figures">
+        <div class="figure-dialogue-box">
           @for (fig of message.figures; track $index) {
             <div class="figure-card">
 
@@ -43,9 +45,7 @@
               }
 
               @if (fig.caption) {
-                <p class="figure-caption">
-                  {{ fig.caption }}
-                </p>
+                <p class="figure-caption">{{ fig.caption }}</p>
               }
 
             </div>
