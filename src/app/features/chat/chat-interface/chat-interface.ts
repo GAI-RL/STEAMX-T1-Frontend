@@ -34,6 +34,8 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
   inputMenuOpen = false;
 
   stats = { plan: 'FREE' };
+  sendError: { type: 'offline' | 'timeout' | 'server' | 'unknown'; message: string } | null = null;
+  sessionError: 'auth' | 'network' | null = null;
   private shouldScroll = false;
   private isFirstMessage = false; // Track if this is the first message in a new session
 
@@ -68,9 +70,13 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
       error: (err) => {
         console.error('Error loading sessions:', err);
         this.loadingSessions = false;
-        // Check if it's an auth error
         if (err.status === 401 || err.status === 403) {
-          this.handleAuthError();
+          this.sessionError = 'auth';
+          this.cdr.detectChanges();
+          setTimeout(() => this.handleAuthError(), 2500);
+        } else {
+          this.sessionError = 'network';
+          this.cdr.detectChanges();
         }
       }
     });
@@ -157,6 +163,7 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
     }
 
     this.loading = true;
+    this.sendError = null;
 
     if (!this.currentSessionId) {
       // This is a new session - mark as first message
@@ -184,6 +191,19 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
     } else {
       this.sendToSession(userMessage, this.currentSessionId);
     }
+  }
+
+  dismissError(): void {
+    this.sendError = null;
+  }
+
+  private resolveErrorMessage(err: any): { type: 'offline' | 'timeout' | 'server' | 'unknown'; message: string } {
+    const status = err?.status;
+    if (status === 503) return { type: 'offline', message: 'The AI service is currently offline. Please try again in a few minutes.' };
+    if (status === 504) return { type: 'timeout', message: 'The AI service took too long to respond. Please try again.' };
+    if (status === 500) return { type: 'server', message: 'An unexpected server error occurred. Our team has been notified.' };
+    const detail = err?.error?.detail;
+    return { type: 'unknown', message: detail || 'Something went wrong. Please try again.' };
   }
 
   private sendToSession(question: string, sessionId: string): void {
@@ -256,11 +276,13 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
         this.messages.pop(); // Remove the user message on error
         this.loading = false;
         this.isFirstMessage = false;
-        this.cdr.detectChanges();
-        // Check if it's an auth error
         if (err.status === 401 || err.status === 403) {
           this.handleAuthError();
+        } else {
+          this.sendError = this.resolveErrorMessage(err);
+          this.shouldScroll = true;
         }
+        this.cdr.detectChanges();
       }
     });
   }
