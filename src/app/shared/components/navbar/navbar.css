@@ -42,7 +42,7 @@
 }
 
 .logo-svg {
-  height: 52px;              /* reduced from 170px */
+  height: 70px;              /* reduced from 170px */
   width: auto;
   display: block;
   transition: filter 0.25s ease;
