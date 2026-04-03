@@ -41,20 +41,18 @@
 }
 
 .logo-svg {
-  height: 42px;
+  height: 56px;
   width: auto;
-  display: block;
-  transition: filter 0.25s ease;
 }
 
 .logo-tagline {
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 400;
   letter-spacing: 0.4px;
   color: #00687a;
   opacity: 0.85;
   line-height: 1;
-  margin-top: 2px;
+  margin-top: 3px;
   white-space: nowrap;
 }
 
@@ -303,3 +301,4 @@ html {
 body.menu-open {
   overflow: hidden;
 }
+
