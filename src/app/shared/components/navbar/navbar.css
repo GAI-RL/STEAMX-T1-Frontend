@@ -1,4 +1,5 @@
 /* ==================== NAVBAR - FINAL REFINED VERSION ==================== */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -8,9 +9,6 @@
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   height: 70px;
 }
 
@@ -30,36 +28,38 @@
   margin: 0 auto;
 }
 
-/* ==================== LOGO - PROMINENT & ATTENTION-GRABBING ==================== */
 /* ==================== LOGO ==================== */
+
 .logo {
   text-decoration: none;
-  transition: all 0.25s ease;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  background: transparent;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transition: all 0.25s ease;
 }
 
 .logo-svg {
-  height: 52px;              /* reduced from 170px */
+  height: 42px;
   width: auto;
   display: block;
   transition: filter 0.25s ease;
 }
 
 .logo-tagline {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 400;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
   color: #00687a;
-  opacity: 0.8;
+  opacity: 0.85;
   line-height: 1;
-  margin-top: -2px;
+  margin-top: 2px;
   white-space: nowrap;
 }
 
 /* Makes the X stand out */
+
 .tagline-x {
   font-weight: 700;
   color: #00687a;
@@ -69,14 +69,14 @@
 .logo:hover .logo-tagline {
   opacity: 1;
 }
-/* Hover glow */
+
 .logo:hover .logo-svg {
-  mix-blend-mode: normal;         /* ← restore on hover so glow shows */
-  filter: drop-shadow(0 0 8px rgba(0, 104, 122, 0.5))
-          drop-shadow(0 0 16px rgba(0, 188, 212, 0.3));
+  filter: drop-shadow(0 0 6px rgba(0, 104, 122, 0.4))
+          drop-shadow(0 0 12px rgba(0, 188, 212, 0.25));
 }
 
-/* ==================== NAVIGATION - MINIMAL & CLEAN ==================== */
+/* ==================== NAVIGATION ==================== */
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -116,14 +116,14 @@
   background: rgba(0, 104, 122, 0.04);
 }
 
-/* Active state - Subtle and clean */
 .nav-links a.active {
   color: #00687a;
   font-weight: 600;
   background: rgba(0, 104, 122, 0.08);
 }
 
-/* ==================== CTA BUTTON - THE STAR ==================== */
+/* ==================== CTA BUTTON ==================== */
+
 .btn-nav-cta {
   display: inline-flex;
   align-items: center;
@@ -144,7 +144,6 @@
   overflow: hidden;
 }
 
-/* Subtle top shine */
 .btn-nav-cta::after {
   content: '';
   position: absolute;
@@ -152,14 +151,15 @@
   left: 0;
   right: 0;
   height: 40%;
-  background: linear-gradient(180deg, 
-    rgba(255, 255, 255, 0.12) 0%, 
-    transparent 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 100%
+  );
   border-radius: 10px 10px 0 0;
   pointer-events: none;
 }
 
-/* Animated shine */
 .btn-nav-cta::before {
   content: '';
   position: absolute;
@@ -167,10 +167,12 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.25), 
-    transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -187,15 +189,8 @@
   transform: translateY(0);
 }
 
-.btn-nav-cta span {
-  position: relative;
-  z-index: 1;
-}
-
 .arrow-icon {
   transition: transform 0.25s ease;
-  position: relative;
-  z-index: 1;
 }
 
 .btn-nav-cta:hover .arrow-icon {
@@ -203,6 +198,7 @@
 }
 
 /* ==================== MOBILE MENU BUTTON ==================== */
+
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
@@ -236,6 +232,7 @@
 }
 
 /* ==================== MOBILE MENU ==================== */
+
 .mobile-menu {
   position: fixed;
   top: 70px;
@@ -256,104 +253,14 @@
   right: 0;
 }
 
-.mobile-links {
-  list-style: none;
-  padding: 24px 20px;
-  margin: 0;
-}
+/* ==================== RESPONSIVE ==================== */
 
-.mobile-links li {
-  margin-bottom: 4px;
-}
-
-.mobile-links a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 16px;
-  color: #64748b;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.mobile-links a:hover {
-  background: rgba(0, 104, 122, 0.06);
-  color: #00687a;
-}
-
-.mobile-links a.active {
-  background: rgba(0, 104, 122, 0.1);
-  color: #00687a;
-  font-weight: 600;
-}
-
-/* Mobile CTA */
-.mobile-cta {
-  margin-top: 16px !important;
-  background: linear-gradient(135deg, #00687a 0%, #00a6bd 100%) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  box-shadow: 0 2px 8px rgba(0, 104, 122, 0.2) !important;
-  gap: 8px;
-  position: relative;
-}
-
-.mobile-cta::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background: linear-gradient(180deg, 
-    rgba(255, 255, 255, 0.12) 0%, 
-    transparent 100%);
-  border-radius: 8px 8px 0 0;
-  pointer-events: none;
-}
-
-.mobile-cta:hover {
-  background: linear-gradient(135deg, #005563 0%, #008a9e 100%) !important;
-  box-shadow: 0 3px 12px rgba(0, 104, 122, 0.25) !important;
-}
-
-.mobile-cta svg {
-  transition: transform 0.25s ease;
-}
-
-.mobile-cta:hover svg {
-  transform: translateX(3px);
-}
-
-/* Mobile Overlay */
-.mobile-overlay {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 70px);
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
-  z-index: 998;
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Desktop Only */
 .desktop-nav {
   display: flex;
 }
 
-/* ==================== RESPONSIVE ==================== */
 @media (max-width: 968px) {
+
   .desktop-nav {
     display: none;
   }
@@ -365,53 +272,34 @@
   .navbar .container {
     padding: 0 24px;
   }
-
-  .logo {
-    font-size: 1.75rem;
-  }
 }
 
 @media (max-width: 640px) {
-  .navbar .container {
-    height: 90px;
-    padding: 0 20px;
-  }
 
-  .logo {
-    font-size: 1.5rem;
+  .navbar,
+  .navbar .container {
+    height: 64px;
   }
 
   .mobile-menu {
     top: 64px;
     height: calc(100vh - 64px);
   }
-
-  .mobile-overlay {
-    top: 64px;
-    height: calc(100vh - 64px);
-  }
 }
 
 @media (max-width: 480px) {
+
   .navbar .container {
     padding: 0 16px;
   }
-
-  .logo {
-    font-size: 1.375rem;
-  }
-
-  .mobile-links {
-    padding: 20px 16px;
-  }
 }
 
-/* Smooth scroll */
+/* ==================== GLOBAL ==================== */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Prevent scroll when menu open */
 body.menu-open {
   overflow: hidden;
 }
