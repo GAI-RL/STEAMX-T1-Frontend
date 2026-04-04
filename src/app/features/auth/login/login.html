@@ -1,3 +1,18 @@
+<!-- ══════════ FULL-PAGE LOGIN LOADER ══════════ -->
+@if (loading) {
+  <div class="login-overlay" aria-live="polite" aria-label="Signing in, please wait">
+    <div class="login-overlay__card">
+      <div class="login-overlay__spinner">
+        <div class="spinner-ring spinner-ring--outer"></div>
+        <div class="spinner-ring spinner-ring--inner"></div>
+        <div class="spinner-ring spinner-ring--dot"></div>
+      </div>
+      <p class="login-overlay__title">Signing you in…</p>
+      <p class="login-overlay__sub">Just a moment, please wait</p>
+    </div>
+  </div>
+}
+
 <div class="auth-page">
   <div class="auth-background">
     <div class="mesh-gradient"></div>
