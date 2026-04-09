@@ -1,0 +1,222 @@
+/* ==================== FOOTER — MINIMAL SAAS ==================== */
+
+.footer {
+  background: rgba(0, 104, 122, 0.03);
+  border-top: 1px solid rgba(0, 104, 122, 0.1);
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 10px 0;
+}
+
+/* ==================== MAIN ROW ==================== */
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 12px;
+  align-items: start;
+}
+
+/* Brand */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo-img {
+  height: 100px;        /* balanced size for footer */
+  width: auto;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: 0.995rem;
+  line-height: 1.65;
+  color: #64748b;
+  max-width: 300px;
+}
+
+/* Nav Groups */
+.footer-nav-group h5 {
+  font-size: 0.995rem;
+  font-weight: 700;
+  color: #00687a;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.footer-nav-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.footer-nav-group ul li a {
+  font-size: 0.995rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-nav-group ul li a:hover {
+  color: #00687a;
+}
+
+/* Social icons — inline row */
+.footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 104, 122, 0.15);
+  background: rgba(0, 104, 122, 0.04);
+  color: #64748b;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link:hover {
+  color: #00687a;
+  background: rgba(0, 104, 122, 0.1);
+  border-color: rgba(0, 104, 122, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Contact */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-contact a {
+  font-size: 0.995rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-contact a:hover {
+  color: #00687a;
+}
+
+/* ==================== DIVIDER ==================== */
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 104, 122, 0.1);
+}
+
+/* ==================== BOTTOM BAR ==================== */
+
+.footer-bottom {
+  padding: 16px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.footer-copy {
+  font-size: 1rem;
+  color: #00687a;
+  margin: 0;
+  text-align: center;
+}
+
+/* ==================== SCROLL TO TOP ==================== */
+
+.scroll-top-btn {
+  position: absolute;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 104, 122, 0.2);
+  background: rgba(0, 104, 122, 0.06);
+  color: #00687a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s ease;
+  outline: none;
+}
+
+.scroll-top-btn:hover {
+  background: #00687a;
+  color: white;
+  border-color: #00687a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 104, 122, 0.28);
+}
+
+.scroll-top-btn:active {
+  transform: translateY(-1px);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 900px) {
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+  .footer-tagline {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-inner {
+    padding: 40px 24px 0;
+  }
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .footer-logo-img {
+    height: 66px;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+  .footer-logo-img {
+    height: 60px;
+  }
+  .scroll-top-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+}

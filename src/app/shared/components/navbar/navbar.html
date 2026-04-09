@@ -1,0 +1,132 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="container">
+    
+    <!-- Logo (LEFT) - Gradient Style -->
+    <!-- Logo (LEFT) - SVG Style -->
+<a href="#hero" (click)="scrollToSection('hero', $event)" class="logo">
+  <img src="assets/images/logo.png" alt="STEAMX" class="logo-svg" />
+
+</a>
+
+    <!-- RIGHT SIDE: Links + Login Button -->
+    <div class="nav-right desktop-nav">
+      <ul class="nav-links">
+        <li>
+          <a 
+            href="#features" 
+            (click)="scrollToSection('features', $event)"
+            [class.active]="isActive('features')">
+            Features
+          </a>
+        </li>
+        <li>
+          <a 
+            href="#testimonials" 
+            (click)="scrollToSection('testimonials', $event)"
+            [class.active]="isActive('testimonials')">
+            Testimonials
+          </a>
+        </li>
+        <li>
+          <a 
+            href="#pricing" 
+            (click)="scrollToSection('pricing', $event)"
+            [class.active]="isActive('pricing')">
+            Pricing
+          </a>
+        </li>
+        <li>
+          <a 
+            href="#about" 
+            (click)="scrollToSection('about', $event)"
+            [class.active]="isActive('about')">
+            About
+          </a>
+        </li>
+        <li>
+          <a 
+            href="#contact" 
+            (click)="scrollToSection('contact', $event)"
+            [class.active]="isActive('contact')">
+            Contact
+          </a>
+        </li>
+      </ul>
+      
+      <a routerLink="/login" class="btn-nav-cta">
+        <span>LOGIN</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="arrow-icon">
+          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="menuOpen">
+    <ul class="mobile-links">
+      <li>
+        <a 
+          href="#features" 
+          (click)="scrollToSection('features', $event)"
+          [class.active]="isActive('features')">
+          Features
+        </a>
+      </li>
+      <li>
+        <a 
+          href="#pricing" 
+          (click)="scrollToSection('pricing', $event)"
+          [class.active]="isActive('pricing')">
+          Pricing
+        </a>
+      </li>
+      <li>
+        <a 
+          href="#testimonials" 
+          (click)="scrollToSection('testimonials', $event)"
+          [class.active]="isActive('testimonials')">
+          Testimonials
+        </a>
+      </li>
+      <li>
+        <a 
+          href="#about" 
+          (click)="scrollToSection('about', $event)"
+          [class.active]="isActive('about')">
+          About
+        </a>
+      </li>
+      <li>
+        <a 
+          href="#contact" 
+          (click)="scrollToSection('contact', $event)"
+          [class.active]="isActive('contact')">
+          Contact
+        </a>
+      </li>
+      <li>
+        <a routerLink="/login" (click)="closeMenu()" class="mobile-cta">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mobile Overlay -->
+  @if (menuOpen) {
+    <div class="mobile-overlay" (click)="closeMenu()"></div>
+  }
+
+</nav>

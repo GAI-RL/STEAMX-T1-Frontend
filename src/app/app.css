@@ -1,0 +1,9 @@
+main {
+  min-height: calc(100vh - 80px);
+}
+
+main.full-height {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}

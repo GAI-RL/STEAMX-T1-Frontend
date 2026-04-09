@@ -1,0 +1,126 @@
+.message {
+  margin-bottom: 32px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.message-avatar {
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-avatar {
+  background: var(--primary-color);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.assistant-avatar {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.message-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.message-sender {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+.message-time {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.message-text {
+  background: var(--white);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  word-wrap: break-word;
+}
+
+.user-message .message-text {
+  background: #f4fdfd;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Separate dialogue box for figures */
+.figure-dialogue-box {
+  background: var(--white);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-top: 12px;
+}
+
+.figure-card {
+  margin-top: 4px;
+}
+
+.figure-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.figure-caption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .message-text,
+  .figure-dialogue-box {
+    padding: 12px 16px;
+  }
+
+  .message-avatar {
+    display: none;
+  }
+}

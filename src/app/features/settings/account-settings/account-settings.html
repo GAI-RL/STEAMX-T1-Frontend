@@ -1,0 +1,159 @@
+<div class="settings-page">
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="page-header">
+      <h1>Account Settings</h1>
+      <p>Manage your profile and account preferences</p>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="settings-section">
+      <div class="section-header">
+        <h2>Profile Information</h2>
+        @if (!editingProfile) {
+          <button class="btn btn-secondary" (click)="enableProfileEdit()">Edit Profile</button>
+        }
+      </div>
+
+      <div class="section-content">
+        @if (profileSuccess) {
+          <div class="success-message">
+            ✓ {{ profileSuccess }}
+          </div>
+        }
+
+        @if (profileError) {
+          <div class="error-message">
+            ⚠️ {{ profileError }}
+          </div>
+        }
+
+        @if (!editingProfile) {
+          <!-- View Mode -->
+          <div class="profile-view">
+            <div class="profile-item">
+              <label>Full Name</label>
+              <p>{{ currentUser?.full_name }}</p>
+            </div>
+            <div class="profile-item">
+              <label>Email</label>
+              <p>{{ currentUser?.email }}</p>
+            </div>
+            <div class="profile-item">
+              <label>Account Type</label>
+              <p class="capitalize">{{ currentUser?.subscription_tier }}</p>
+            </div>
+            <div class="profile-item">
+              <label>Member Since</label>
+              <p>{{ currentUser?.created_at | date:'medium' }}</p>
+            </div>
+          </div>
+        } @else {
+          <!-- Edit Mode -->
+          <form (ngSubmit)="saveProfile()" class="profile-edit-form">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input 
+                type="text" 
+                id="fullName" 
+                [(ngModel)]="profileData.full_name"
+                name="fullName"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                [(ngModel)]="profileData.email"
+                name="email"
+                required>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" (click)="cancelProfileEdit()">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="savingProfile">
+                {{ savingProfile ? 'Saving...' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="settings-section danger-zone">
+      <div class="section-header">
+        <h2>Danger Zone</h2>
+      </div>
+
+      <div class="section-content">
+        <div class="danger-warning">
+          <h3>Delete Account</h3>
+          <p>Once you delete your account, there is no going back. This will permanently delete:</p>
+          <ul>
+            <li>Your profile information</li>
+            <li>All your chat sessions and messages</li>
+            <li>Your usage statistics</li>
+            <li>Any feedback you've submitted</li>
+          </ul>
+          <button class="btn btn-danger" (click)="openDeleteConfirm()">
+            Delete My Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+@if (showDeleteConfirm) {
+  <div class="modal-overlay" (click)="closeDeleteConfirm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>⚠️ Delete Account</h2>
+        <button class="close-btn" (click)="closeDeleteConfirm()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="warning-text">
+          This action <strong>cannot be undone</strong>. This will permanently delete your account and all associated data.
+        </p>
+
+        <p class="confirm-instruction">
+          Please type your email address <strong>{{ currentUser?.email }}</strong> to confirm:
+        </p>
+
+        <input 
+          type="email" 
+          [(ngModel)]="deleteConfirmEmail"
+          placeholder="Enter your email"
+          class="confirm-input"
+          [class.error]="deleteError">
+
+        @if (deleteError) {
+          <div class="error-message">
+            {{ deleteError }}
+          </div>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" (click)="closeDeleteConfirm()">
+          Cancel
+        </button>
+        <button 
+          class="btn btn-danger" 
+          (click)="deleteAccount()"
+          [disabled]="deleting || deleteConfirmEmail !== currentUser?.email">
+          {{ deleting ? 'Deleting...' : 'Delete Account Permanently' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
