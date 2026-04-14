@@ -289,8 +289,3 @@
 @if (inputMenuOpen) {
   <div class="input-backdrop" (click)="inputMenuOpen = false"></div>
 }
-@if (sessionExpired) {
-  <app-session-expired-modal
-    (loginNow)="handleAuthError()">
-  </app-session-expired-modal>
-}

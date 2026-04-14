@@ -67,7 +67,7 @@
   gap: 7px;
   width: 100%;
   padding: 10px 0;
-  background: #c2600a;
+  background: #00687a;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -77,7 +77,7 @@
   transition: background 0.15s, transform 0.1s;
 }
 
-.se-btn:hover  { background: #a84f06; }
+.se-btn:hover  { background: #005663; }
 .se-btn:active { transform: scale(0.98); }
 
 .se-countdown {
@@ -88,7 +88,7 @@
 
 .se-countdown-num {
   font-weight: 600;
-  color: #c2600a;
+  color: #00687a;
   font-variant-numeric: tabular-nums;
   display: inline-block;
   min-width: 14px;

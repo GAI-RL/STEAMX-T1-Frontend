@@ -9,6 +9,7 @@ import { ChatSidebarComponent } from '../chat-sidebar/chat-sidebar';
 import { ChatMessageComponent } from '../chat-message/chat-message';
 import { User } from '../../../core/models/user.model';
 import { SessionExpiredModal } from "../../../shared/session-expired-modal/session-expired-modal";
+import { SessionService } from '../../../core/services/session-service';
 
 @Component({
   selector: 'app-chat-interface',
@@ -47,7 +48,8 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private sessionService: SessionService,
   ) {}
 
   ngOnInit(): void {
@@ -76,13 +78,14 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
         if (err.status === 401 || err.status === 403) {
           this.sessionError = 'auth';
           this.cdr.detectChanges();
-          setTimeout(() => this.handleAuthError(), 2500);
+           this.sessionService.triggerSessionExpired();
         } 
-          else if (err.status === 521 || err.status === 0) {
+          else if (err.status === 521 ) {
             this.sessionError = 'service';
             this.cdr.detectChanges();
           }else {
           this.sessionError = 'network';
+         
           this.cdr.detectChanges();
         }
       }
@@ -142,7 +145,7 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
         this.cdr.detectChanges();
         // Check if it's an auth error
         if (err.status === 401 || err.status === 403) {
-          this.handleAuthError();
+           this.sessionService.triggerSessionExpired();
         }
       }
     });
@@ -191,7 +194,7 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
           this.isFirstMessage = false;
           // Check if it's an auth error
           if (err.status === 401 || err.status === 403) {
-            this.handleAuthError();
+             this.sessionService.triggerSessionExpired();
           }
         }
       });
@@ -284,10 +287,9 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
         this.loading = false;
         this.isFirstMessage = false;
         if (err.status === 401 || err.status === 403) {
-           this.sessionExpired = true;       // ← triggers modal
-           this.sessionError = null;         // ← no inline banner
+          this.sessionService.triggerSessionExpired()      // ← no inline banner
            this.cdr.detectChanges();
-         // this.handleAuthError();
+         //  this.sessionService.triggerSessionExpired();
         } 
          else if (err.status === 404 ) {
     this.sendErrorMessage = 'AI service is temporarily unavailable. Please try again in a few moments';
@@ -348,7 +350,7 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
         if (!silent) this.loadingSessions = false;
         // Check if it's an auth error
         if (err.status === 401 || err.status === 403) {
-          this.handleAuthError();
+           this.sessionService.triggerSessionExpired();
         }
          else if (err.status === 521 || err.status === 0) {
             this.sessionError = 'service';
@@ -371,7 +373,7 @@ export class ChatInterfaceComponent implements OnInit, AfterViewChecked {
         console.error('Error deleting session:', err);
         // Check if it's an auth error
         if (err.status === 401 || err.status === 403) {
-          this.handleAuthError();
+           this.sessionService.triggerSessionExpired();
         }
       }
     });
