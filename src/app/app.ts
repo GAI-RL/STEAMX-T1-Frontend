@@ -1,4 +1,3 @@
-
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,12 +9,10 @@ import { Subscription } from 'rxjs';
 import { SessionExpiredModal } from "./shared/session-expired-modal/session-expired-modal";
 import { AuthService } from './core/services/auth.service';
 
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, SessionExpiredModal],
+   imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, SessionExpiredModal],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
